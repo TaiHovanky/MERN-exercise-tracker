@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import DatePicker from 'react-datepicker';
 import axios from 'axios';
-import "react-datepicker/dist/react-datepicker.css";
+import 'react-datepicker/dist/react-datepicker.css';
 
 export default class EditExercise extends Component {
   constructor(props) {
@@ -76,7 +76,7 @@ export default class EditExercise extends Component {
       duration: this.state.duration,
       date: this.state.date
     };
-    console.log('exer', exercise);
+
     axios.post(`http://localhost:5000/exercises/update/${this.props.match.params.id}`, exercise)
       .then(res => console.log(res.data));
     window.location = '/';
@@ -89,38 +89,41 @@ export default class EditExercise extends Component {
         <form onSubmit={this.onSubmit}>
           <div className="form-group"> 
             <label>Username: </label>
-            <select ref="userInput"
-                required
-                className="form-control"
-                value={this.state.username}
-                onChange={this.onChangeUsername}>
-                {
-                  this.state.users.map(function(user) {
-                    return <option 
+            <select
+              required
+              className="form-control"
+              value={this.state.username}
+              onChange={this.onChangeUsername}
+            >
+              {
+                this.state.users.map(function(user) {
+                  return (
+                    <option 
                       key={user}
                       value={user}>{user}
-                      </option>;
-                  })
-                }
+                    </option>
+                  );
+                })
+              }
             </select>
           </div>
           <div className="form-group"> 
             <label>Description: </label>
             <input  type="text"
-                required
-                className="form-control"
-                value={this.state.description}
-                onChange={this.onChangeDescription}
-                />
+              required
+              className="form-control"
+              value={this.state.description}
+              onChange={this.onChangeDescription}
+              />
           </div>
           <div className="form-group">
             <label>Duration (in minutes): </label>
             <input 
-                type="text" 
-                className="form-control"
-                value={this.state.duration}
-                onChange={this.onChangeDuration}
-                />
+              type="text" 
+              className="form-control"
+              value={this.state.duration}
+              onChange={this.onChangeDuration}
+              />
           </div>
           <div className="form-group">
             <label>Date: </label>

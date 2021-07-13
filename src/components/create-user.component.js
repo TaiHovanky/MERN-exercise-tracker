@@ -24,7 +24,7 @@ export default class CreateUser extends Component {
     const user = {
       username: this.state.username
     };
-    console.log('exer', user);
+
     axios.post('http://localhost:5000/users/add', user)
       .then(res => console.log(res.data));
 
@@ -38,12 +38,13 @@ export default class CreateUser extends Component {
         <form onSubmit={this.onSubmit}>
           <div className="form-group"> 
             <label>Username: </label>
-            <input  type="text"
-                required
-                className="form-control"
-                value={this.state.username}
-                onChange={this.onChangeUsername}
-                />
+            <input
+              type="text"
+              required
+              className="form-control"
+              value={this.state.username}
+              onChange={this.onChangeUsername}
+            />
           </div>
           <div className="form-group">
             <input type="submit" value="Create User" className="btn btn-primary" />
